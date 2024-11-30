@@ -1,0 +1,36 @@
+name: Daily Crawl Trending Meme Worker
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Runs every day at midnight UTC
+  push:
+    branches:
+      - main
+
+jobs:
+  run-crawler:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: "stable"
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Run build_runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Create .env file with APPWRITE_PROJECT_ID and APPWRITE_KEY
+        run: echo "APPWRITE_PROJECT_ID=${{ secrets.APPWRITE_PROJECT_ID }}" >> .env && echo "APPWRITE_KEY=${{ secrets.APPWRITE_KEY }}" >> .env
+
+      - name: Make run.sh executable
+        run: chmod +x run.sh
+
+      - name: Run Crawler
+        run: ./run.sh
