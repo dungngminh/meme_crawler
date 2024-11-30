@@ -38,5 +38,8 @@ jobs:
       - name: Add new line to changelog is date crawled
         run: echo -e "## Crawling $(date +'%d-%m-%Y') \n  - ✅ Done" >> CHANGELOG.md
 
+      - name: Pull new code
+        run: git pull
+
       - name: Commit changes
         run: git add . && git commit -m "Crawl $(date +'%Y-%m-%d') done" && git push
