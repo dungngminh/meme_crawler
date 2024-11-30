@@ -35,8 +35,8 @@ jobs:
       - name: Init git config
         run: git config user.name "dungngminh" && git config user.email "ngminhdung1311@gmai.com"
 
-      - name: Edit changelog, get today's date
-        run: echo "## Trending meme crawler report\n\n - Crawl $(date +'%Y-%m-%d') done" > CHANGELOG.md
+      - name: Add new line to changelog is date crawled
+        run: echo -e "## Crawling $(date +'%d-%m-%Y') \n  - ✅ Done" >> CHANGELOG.md
 
       - name: Commit changes
         run: git add . && git commit -m "Crawl $(date +'%Y-%m-%d') done" && git push
