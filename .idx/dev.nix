@@ -2,7 +2,7 @@
 # see: https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-23.11"; # or "unstable"
+  channel = "unstable"; # or "unstable"
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.dart
@@ -19,10 +19,6 @@
       # Runs when a workspace is first created
       onCreate = {
         dart-install = "dart pub get";
-      };
-      # Runs when a workspace is (re)started
-      onStart= {
-        run-server = "dart run watcher.dart";
       };
     };
   };

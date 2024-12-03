@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   args: ^2.3.0
-  dart_appwrite: ^12.1.0
+  dart_appwrite: 12.1.0
   equatable: ^2.0.7
   html: ^0.15.4
   http: ^0.13.0

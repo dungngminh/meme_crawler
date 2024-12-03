@@ -42,6 +42,7 @@ class AppwriteIo extends NoSqlDatabaseIo<MemeTemplate> {
     ).then(
       (exist) {
         if (exist == null) {
+          print("✅ No \"${data.title}\" from database, starting save action, data: ${data.toJson()}");
           return _save(
             databaseId: databaseId,
             collectionId: collectionId,
@@ -96,6 +97,7 @@ class AppwriteIo extends NoSqlDatabaseIo<MemeTemplate> {
     required String collectionId,
     required MemeTemplate data,
   }) async {
+    print("⏳ Start to check data is existed in DB: $data");
     return _databases.listDocuments(
       databaseId: databaseId,
       collectionId: collectionId,
@@ -107,11 +109,12 @@ class AppwriteIo extends NoSqlDatabaseIo<MemeTemplate> {
     ).then((response) {
       final document = response.documents.firstOrNull;
       if (document != null) {
+        print("✅ Found an existed document: $document");
         return MemeTemplate.fromJson(document.data);
       }
       return null;
     }).onError((error, stackTrace) {
-      print("❌ ❌✅Failed to check exist in database with error: $error");
+      print("❌ ❌ Failed to check exist in database with error: $error");
       return null;
     });
   }
@@ -132,8 +135,8 @@ class AppwriteIo extends NoSqlDatabaseIo<MemeTemplate> {
       print("✅ Deleted ${data.title} successfully");
       return true;
     }).onError((error, stackTrace) {
-      print("❌ ❌✅Failed to delete document with error: $error");
+      print("❌ ❌ Failed to delete document with error: $error");
       return false;
     });
-  }
+  } 
 }

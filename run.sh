@@ -7,4 +7,4 @@ export $(egrep -v '^#' .env | xargs)
 
 
 # Run the application
-dart run --define=APPWRITE_PROJECT_ID=$APPWRITE_PROJECT_ID --define=APPWRITE_KEY=$APPWRITE_KEY bin/top_trending_meme_tempalte_crawler.dart
+dart run --define=APPWRITE_PROJECT_ID=$APPWRITE_PROJECT_ID --define=APPWRITE_KEY=$APPWRITE_KEY bin/top_trending_meme_template_crawler.dart
