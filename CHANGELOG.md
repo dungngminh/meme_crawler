@@ -37,3 +37,5 @@
   - ✅ Done
 ## Crawling 18-12-2024 
   - ✅ Done
+## Crawling 19-12-2024 
+  - ✅ Done
