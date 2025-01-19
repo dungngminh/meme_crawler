@@ -97,3 +97,5 @@
   - ✅ Done
 ## Crawling 18-01-2025 
   - ✅ Done
+## Crawling 19-01-2025 
+  - ✅ Done
