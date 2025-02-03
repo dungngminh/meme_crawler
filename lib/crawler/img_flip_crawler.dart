@@ -76,7 +76,7 @@ class ImgFlipCrawler extends Crawler {
               id: Uuid().v4(),
               title: title,
               originalImageUrl:
-                  "$originalUrl$originalImageUrl".contains('imgflip.com')
+                  originalImageUrl.contains('i.imgflip.com')
                       ? "https:$originalImageUrl"
                       : "$originalUrl$originalImageUrl",
               detailUrl: detailUrl,

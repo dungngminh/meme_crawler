@@ -23,8 +23,8 @@ Future<void> main() async {
   await imgFlipCrawler.start(
     onMemeTemplateFound: (memeTemplate) async {
       await ioAppWrite.save(
-        databaseId: '67498c42002df1485c49',
-        collectionId: '67498c53003d9a1a89ee',
+        databaseId: 'meme_maker',
+        collectionId: 'meme',
         data: memeTemplate,
       );
     },
