@@ -10,6 +10,9 @@ class MemeTemplate extends Equatable {
   final String originalImageUrl;
   final String detailUrl;
   final String? source;
+  final int? imageWidth;
+  final int? imageHeight;
+  final bool? needRotate;
   final DateTime crawledAt;
   MemeTemplate({
     required this.id,
@@ -18,6 +21,9 @@ class MemeTemplate extends Equatable {
     required this.detailUrl,
     this.source,
     required this.crawledAt,
+    this.imageWidth,
+    this.imageHeight,
+    this.needRotate,
   });
 
   factory MemeTemplate.fromJson(Map<String, dynamic> json) =>
@@ -34,6 +40,9 @@ class MemeTemplate extends Equatable {
       detailUrl,
       source,
       crawledAt,
+      imageWidth,
+      imageHeight,
+      needRotate,
     ];
   }
 }

@@ -2,6 +2,7 @@ import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:myapp/crawler/crawler.dart';
 import 'package:myapp/model/meme_template.dart';
+import 'package:myapp/util/image_size_getter.dart';
 import 'package:uuid/uuid.dart';
 
 const originalUrl = "https://imgflip.com";
@@ -72,16 +73,20 @@ class ImgFlipCrawler extends Crawler {
           final originalImageUrl = await fetchDetailImage(detailUrl);
 
           if (originalImageUrl != null) {
+            final imageUrl = originalImageUrl.contains('i.imgflip.com')
+                ? "https:$originalImageUrl"
+                : "$originalUrl$originalImageUrl";
+            final imageSize = await ImageSizeGetterUtil.getImageSize(imageUrl);
             final memeTemplate = MemeTemplate(
               id: Uuid().v4(),
               title: title,
-              originalImageUrl:
-                  originalImageUrl.contains('i.imgflip.com')
-                      ? "https:$originalImageUrl"
-                      : "$originalUrl$originalImageUrl",
+              originalImageUrl: imageUrl,
+              imageHeight: imageSize?.height,
+              imageWidth: imageSize?.width,
+              needRotate: imageSize?.needRotate,
               detailUrl: detailUrl,
               source: 'imgflip',
-              crawledAt: DateTime.now(),
+              crawledAt: DateTime.now().toUtc(),
             );
             print("✅ Fetched image from: $detailUrl successfully!!");
             memeTemplates.add(memeTemplate);
