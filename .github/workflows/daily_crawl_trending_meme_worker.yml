@@ -33,7 +33,7 @@ jobs:
           APPWRITE_KEY: ${{ secrets.APPWRITE_KEY }}
 
       - name: Init git config
-        run: git config user.name "dungngminh" && git config user.email "ngminhdung1311@gmai.com"
+        run: git config user.name "dungngminh" && git config user.email "63831488+dungngminh@users.noreply.github.com"
 
       - name: Add new line to changelog is date crawled
         run: echo -e "## Crawling $(date +'%d-%m-%Y') \n  - ✅ Done" >> CHANGELOG.md
